@@ -3,6 +3,7 @@ const dotenv= require("dotenv");
 const { default: mongoose } = require("mongoose");
 const app= express();
 dotenv.config();
+app.use(express.json())
 const userRoutes= require("./Routes/userRoutes");
 const port= process.env.PORT||6000  
 const connectDB=async ()=>{
@@ -18,5 +19,5 @@ connectDB();
 app.get("/",(req, res)=>{
     res.send("yes its working ")
 })
-app.use("user/", userRoutes);
+app.use("/user", userRoutes);
 app.listen(port, console.log("server is running"))
